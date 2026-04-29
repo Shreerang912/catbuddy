@@ -1,27 +1,27 @@
 const vscode = require('vscode');
 
 class CatViewProvider {
-    constructor(context) {
-        this._context = context;
-    }
-    
-    resolveWebviewView(WebviewView) {
-        webviewView.webview.option = { enableScripts: true };
-        webviewView.webview.html = getWebviewContent();
-    }
+  constructor(context) {
+    this._context = context;
+  }
+
+  resolveWebviewView(webviewView) {
+    webviewView.webview.options = { enableScripts: true };
+    webviewView.webview.html = getWebviewContent();
+  }
 }
 
 function activate(context) {
-    const provider = new CatViewProvider(context);
-    context.subscriptions.push(
-        vscode.window.registerWebviewViewProvider('catbuddy.catView', provider)
-    );
+  const provider = new CatViewProvider(context);
+  context.subscriptions.push(
+    vscode.window.registerWebviewViewProvider('catbuddy.catView', provider)
+  );
 }
 
-function deactive() {}
+function deactivate() {}
 
 function getWebviewContent() {
-    return `<!DOCTYPE html>
+  return `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -99,4 +99,5 @@ function getWebviewContent() {
 </body>
 </html>`;
 }
-module.exports = { activate, deactive };
+
+module.exports = { activate, deactivate };
