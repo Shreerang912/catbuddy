@@ -12,6 +12,7 @@
         "views": {
             "explorer": [
                 {
+                    "icon": "icon",
                     "type": "webview",
                     "id": "catbuddy.catView",
                     "name": "Cat Buddy"

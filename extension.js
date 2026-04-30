@@ -53,13 +53,30 @@ function getWebviewContent() {
       height: 100px;
       overflow: visible;
     }
+      @keyframes blink {
+      0%, 90%, 100% { transform: scaleY(1); }
+      95% { transform: scaleY(0.08); }
+      }
+      @keyframes tailwag {
+      0%, 100% { transform: rotate(0deg); }
+      25% { transform: rotate(8deg); }
+      75% { transform: rotate(-8deg); }
+      }
+      .eyes {
+      animation: blink 4s infinite;
+      transform-origin: 50px 44px;
+      }
+      .tail {
+      animation: tailwag 2s ease-in-out infinite;
+      transform-origin: 62px 80px;
+      }
   </style>
 </head>
 <body>
   <div class="cat-container">
     <svg class="cat" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
       <!-- Tail -->
-      <path d="M 62 80 Q 90 85 88 68 Q 86 55 75 58"
+      <path class="tail" d="M 62 80 Q 90 85 88 68 Q 86 55 75 58"
             stroke="#c0853a" stroke-width="5" fill="none" stroke-linecap="round"/>
       <!-- Body -->
       <ellipse cx="50" cy="72" rx="22" ry="18" fill="#e8a44a"/>
@@ -72,11 +89,12 @@ function getWebviewContent() {
       <polygon points="67,30 72,12 58,26" fill="#e8a44a"/>
       <polygon points="66,28 70,16 60,26" fill="#f5c0a0"/>
       <!-- Eyes -->
-      <ellipse cx="43" cy="44" rx="4" ry="4.5" fill="#2a2a2a"/>
-      <ellipse cx="57" cy="44" rx="4" ry="4.5" fill="#2a2a2a"/>
-      <!-- Eye shine -->
-      <circle cx="44.5" cy="42.5" r="1.2" fill="white"/>
-      <circle cx="58.5" cy="42.5" r="1.2" fill="white"/>
+      <g class="eyes">
+        <ellipse cx="43" cy="44" rx="4" ry="4.5" fill="#2a2a2a"/>
+        <ellipse cx="57" cy="44" rx="4" ry="4.5" fill="#2a2a2a"/>
+        <circle cx="44.5" cy="42.5" r="1.2" fill="white"/>
+        <circle cx="58.5" cy="42.5" r="1.2" fill="white"/>
+      </g>
       <!-- Nose -->
       <polygon points="50,50 48,53 52,53" fill="#e07090"/>
       <!-- Mouth -->
@@ -101,4 +119,3 @@ function getWebviewContent() {
 }
 
 module.exports = { activate, deactivate };
- 
